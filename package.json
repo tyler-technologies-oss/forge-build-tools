@@ -11,8 +11,7 @@
     "build": "gulp build",
     "lint": "gulp eslint",
     "changelog": "auto changelog",
-    "release": "auto shipit",
-    "postversion": "cd dist && npm version $npm_package_version --no-git-tag-version --no-commit-hooks --ignore-scripts"
+    "release": "auto shipit"
   },
   "engines": {
     "node": ">=12"
