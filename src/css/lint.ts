@@ -1,4 +1,4 @@
-import * as stylelint from 'stylelint';
+import { Config, lint, LinterOptions } from 'stylelint';
 import { log } from '../utils';
 
 /**
@@ -8,7 +8,7 @@ import { log } from '../utils';
  * @param report Whether to report the results to console or not.
  */
 export async function lintSass(files: string, config?: string | JSON, report = true): Promise<boolean> {
-  const options: Partial<stylelint.LinterOptions> = {
+  const options: Partial<LinterOptions> = {
     files,
     formatter: 'string'
   };
@@ -16,10 +16,10 @@ export async function lintSass(files: string, config?: string | JSON, report = t
   if (typeof config === 'string') {
     options.configFile = config;
   } else if (typeof config === 'object') {
-    options.config = config as Partial<stylelint.Configuration>;
+    options.config = config as Partial<Config>;
   }
 
-  const result = await stylelint.lint(options);
+  const result = await lint(options);
 
   if (report && result.errored) {
     log(result.output);
