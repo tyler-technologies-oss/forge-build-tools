@@ -1,6 +1,6 @@
 {
   "name": "@tylertech/forge-build-tools",
-  "version": "1.0.0-dev.1",
+  "version": "1.0.0-dev.2",
   "description": "Node utilities for building and packaging libraries.",
   "author": "Tyler Technologies, Inc.",
   "license": "Apache-2.0",
@@ -43,7 +43,7 @@
     "rimraf": "^3.0.2",
     "rollup": "^2.70.1",
     "rollup-plugin-uglify": "^6.0.4",
-    "sass": "~1.38.1",
+    "sass": "^1.51.0",
     "slash": "^3.0.0",
     "stylelint": "^14.6.1",
     "tmp": "^0.2.1",
