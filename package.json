@@ -1,6 +1,6 @@
 {
   "name": "@tylertech/forge-build-tools",
-  "version": "1.0.0-rc.0",
+  "version": "2.0.0-rc.0",
   "description": "Node utilities for building and packaging libraries.",
   "author": "Tyler Technologies, Inc.",
   "license": "Apache-2.0",
