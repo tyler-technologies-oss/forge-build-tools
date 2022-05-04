@@ -60,7 +60,6 @@
   },
   "devDependencies": {
     "@auto-it/conventional-commits": "^10.36.5",
-    "@auto-it/exec": "^10.36.5",
     "@auto-it/first-time-contributor": "^10.36.5",
     "@auto-it/npm": "^10.36.5",
     "@auto-it/pr-body-labels": "^10.36.5",
