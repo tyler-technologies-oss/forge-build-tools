@@ -22,8 +22,15 @@ task('eslint', () => {
 /** Compiles the TypeScript files in the source directory to the build output directory. */
 task('compile:ts', () => compileTypeScript(join(SRC_DIR, '**/*.ts'), join(ROOT, 'tsconfig.json')));
 
-/** Copies the package.json to the build output directory. */
-task('copy:packageJson', () => copyFilesAsync(join(ROOT, 'package.json'), ROOT, OUTPUT_DIR));
+/** Copies files to the build output directory. */
+task('copy', () => {
+  const files = [
+    join(ROOT, 'package.json'),
+    join(ROOT, 'README.md'),
+    join(ROOT, 'LICENSE')
+  ];
+  return copyFilesAsync(files, ROOT, OUTPUT_DIR);
+});
 
 /** Adjusts the package.json to prepare it for public distribution. */
 task('fixup:packageJson', async () => {
@@ -37,4 +44,4 @@ task('fixup:packageJson', async () => {
   });
 });
 
-task('build', series('clean', 'eslint', 'compile:ts', 'copy:packageJson', 'fixup:packageJson'));
+task('build', series('clean', 'eslint', 'compile:ts', 'copy', 'fixup:packageJson'));

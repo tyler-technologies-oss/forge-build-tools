@@ -4,7 +4,7 @@
   "description": "Node utilities for building and packaging libraries.",
   "author": "Tyler Technologies, Inc.",
   "license": "Apache-2.0",
-  "repository": "tyler-technologies/forge-build-tools",
+  "repository": "tyler-technologies-oss/forge-build-tools",
   "main": "src/index.js",
   "typings": "typings/index.d.ts",
   "scripts": {
