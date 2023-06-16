@@ -1,14 +1,16 @@
 {
   "compilerOptions": {
-    "target": "ES2017",
-    "module": "commonjs",
+    "target": "ES2020",
+    "module": "ESNext",
     "moduleResolution": "node",
-    "lib": ["dom", "es2017"],
-    "outDir": "dist/src",
+    "lib": ["dom", "ES2020"],
+    "outDir": "dist/esm",
     "noImplicitAny": true,
+    "allowJs": true,
     "strictNullChecks": true,
     "declaration": true,
     "declarationDir": "dist/typings",
+    "skipLibCheck": true,
     "inlineSourceMap": true,
     "inlineSources": true,
     "importHelpers": true,
@@ -19,6 +21,10 @@
     "noImplicitReturns": true,
     "noImplicitThis": false,
     "forceConsistentCasingInFileNames": true,
-    "esModuleInterop": true
-  }
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "files": [
+    "src/index.ts"
+  ]
 }

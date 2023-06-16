@@ -1,5 +1,5 @@
 import { ESLint } from 'eslint';
-import { log } from '../utils';
+import { log } from '../utils/index.js';
 
 export interface ILintESLintResult {
   hasError: boolean;

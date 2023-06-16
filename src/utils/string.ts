@@ -1,4 +1,4 @@
-const camelcase = require('camelcase');
+import camelcase from 'camelcase';
 
 /**
  * Converts a string value to dash-case.

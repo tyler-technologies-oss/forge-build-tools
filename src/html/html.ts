@@ -1,4 +1,4 @@
-const htmlMinifier = require('html-minifier');
+import htmlMinifier from 'html-minifier';
 
 /**
  * Minifies HTML content.

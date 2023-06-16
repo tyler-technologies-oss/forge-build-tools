@@ -1,14 +1,16 @@
 import { isAbsolute } from 'path';
 import { exec } from 'child_process';
 import * as glob from 'glob';
+import template from 'lodash.template';
+import slash from 'slash';
+import cpath from 'canonical-path';
+import ora from 'ora';
+import chalk from 'chalk';
 
-import { readFileAsync, outputFileAsync, copy } from '../fs';
-import { FileTemplateData } from './file-template-data';
-import { log } from './log';
+import { readFileAsync, outputFileAsync, copy } from '../fs/index.js';
+import { FileTemplateData } from './file-template-data.js';
+import { log } from './log.js';
 
-const template = require('lodash.template');
-const slash = require('slash');
-const cpath = require('canonical-path');
 
 const TIME_UNITS = ['s', 'ms', 'μp'];
 
@@ -108,14 +110,12 @@ export async function runTask<T>(title: string, fn: () => Promise<T>, quiet = fa
     return await fn();
   }
 
-  const ora = require('ora');
   const spinner = ora(title).start();
 
   try {
     const start = process.hrtime();
     const value = await fn();
     const elapsed = process.hrtime(start);
-    const chalk = require('chalk');
     spinner.succeed(`${title} ${chalk.dim('in ' + formatHrTime(elapsed))}`);
     return value;
   } catch (e) {
@@ -138,19 +138,6 @@ export function formatHrTime(hrtime: any): string {
     }
   }
   return time.toFixed(2) + TIME_UNITS[index];
-}
-
-/**
- * Copy the values of all of the enumerable own properties from a source object to a
- * target object, where value is defined only. Returns the target object.
- * @param {T} target The target object to copy to.
- * @param {U} source The source object from which to copy properties.
- */
-export function assignDefined<T, U>(target: T, source: U): T & U {
-  Object.keys(source)
-    .filter(key => (source as any)[key] !== undefined)
-    .forEach(key => (target as any)[key] = (source as any)[key]);
-  return target as any;
 }
 
 /**

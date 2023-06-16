@@ -1,4 +1,4 @@
-import { log, logDebug, logSuccess, logInfo, logWarn, logError, logFatal, LogLevel, setLogLevel } from './log';
+import { log, logDebug, logSuccess, logInfo, logWarn, logError, logFatal, LogLevel, setLogLevel } from './log.js';
 
 export class Logger {
   public static set level(level: LogLevel) {

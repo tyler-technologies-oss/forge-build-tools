@@ -1,8 +1,8 @@
-import * as ts from 'typescript';
+import ts from 'typescript';
 
-import { TS_LIB_MAP } from '../constants';
-import { isGlob, log, logError, logInfo, logWarn } from '../utils';
-import { readJsonFile, globFilesAsync } from '../fs';
+import { TS_LIB_MAP } from '../constants.js';
+import { isGlob, log, logError, logInfo, logWarn } from '../utils/index.js';
+import { readJsonFile, globFilesAsync } from '../fs/index.js';
 
 export interface ITypeScriptCompilerOptions extends ts.CompilerOptions {}
 

@@ -1,5 +1,7 @@
-import { Config, lint, LinterOptions } from 'stylelint';
-import { log } from '../utils';
+import stylelint, { Config, LinterOptions } from 'stylelint';
+import { log } from '../utils/index.js';
+
+const { lint } = stylelint;
 
 /**
  * Runs stylelint on a glob pattern and reports the results to the console.

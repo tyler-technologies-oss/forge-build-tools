@@ -1,5 +1,5 @@
-import { isGlob } from '../utils';
-import { globFilesAsync, readFileAsync, writeFileAsync } from './fs';
+import { isGlob } from '../utils/index.js';
+import { globFilesAsync, readFileAsync, writeFileAsync } from './fs.js';
 
 export interface IFileDescriptor {
   filepath: string;

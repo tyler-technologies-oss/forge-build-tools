@@ -1,2 +1,2 @@
-export * from './rollup';
-export * from './webpack';
+export * from './rollup.js';
+export * from './webpack.js';

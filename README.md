@@ -12,8 +12,6 @@ This library is primarily used to build the Forge Web Component libraries within
 $ npm install --save-dev @tylertech/forge-build-tools
 ```
 
-> TypeScript typings are provided within this package.
-
 ## Development
 
 Install dependencies:
