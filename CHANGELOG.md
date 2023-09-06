@@ -1,3 +1,23 @@
+# v2.1.0 (Tue Sep 05 2023)
+
+#### 🚀 Enhancement
+
+- feat(typescript): add build support for es2020+ [#3](https://github.com/tyler-technologies-oss/forge-build-tools/pull/3) ([@DRiFTy17](https://github.com/DRiFTy17))
+
+#### 🐛 Bug Fix
+
+- chore: update workflows [#2](https://github.com/tyler-technologies-oss/forge-build-tools/pull/2) ([@DRiFTy17](https://github.com/DRiFTy17))
+
+#### ⚠️ Pushed to `main`
+
+- chore: upgrade workflow ([@DRiFTy17](https://github.com/DRiFTy17))
+
+#### Authors: 1
+
+- Kieran Nichols ([@DRiFTy17](https://github.com/DRiFTy17))
+
+---
+
 # v2.0.0 (Fri Jun 24 2022)
 
 :tada: This release contains work from a new contributor! :tada:

@@ -1,6 +1,5 @@
 import ts from 'typescript';
 
-import { TS_LIB_MAP } from '../constants.js';
 import { isGlob, log, logError, logInfo, logWarn } from '../utils/index.js';
 import { readJsonFile, globFilesAsync } from '../fs/index.js';
 
@@ -31,7 +30,7 @@ export async function compileTypeScript(files: string[] | string, options: IType
   // filename (i.e. lib.es2015.d.ts), which differs from the regular tsconfig lib entries. This allows
   // lib entries to specified the same way (i.e. es2015 => lib.es2015.d.ts)
   if (options.lib) {
-    options.lib = options.lib.map(lib => TS_LIB_MAP[lib] || lib);
+    options.lib = options.lib.map(lib => `lib.${lib}.d.ts`);
   }
   
   const program = ts.createProgram(files, options);
@@ -96,6 +95,12 @@ export function normalizeCompilerOptions(options: ts.CompilerOptions): ts.Compil
       case 'es2015':
         options.module = ts.ModuleKind.ES2015;
         break;
+      case 'es2020':
+        options.module = ts.ModuleKind.ES2020;
+        break;
+      case 'es2022':
+        options.module = ts.ModuleKind.ES2022;
+        break;
       case 'esnext':
         options.module = ts.ModuleKind.ESNext;
         break;
@@ -133,6 +138,18 @@ export function normalizeCompilerOptions(options: ts.CompilerOptions): ts.Compil
         break;
       case 'ES2018':
         options.target = ts.ScriptTarget.ES2018;
+        break;
+      case 'ES2019':
+        options.target = ts.ScriptTarget.ES2019;
+        break;
+      case 'ES2020':
+        options.target = ts.ScriptTarget.ES2020;
+        break;
+      case 'ES2021':
+        options.target = ts.ScriptTarget.ES2021;
+        break;
+      case 'ES2022':
+        options.target = ts.ScriptTarget.ES2022;
         break;
       case 'ESNEXT':
         options.target = ts.ScriptTarget.ESNext;
