@@ -63,9 +63,9 @@
     "typescript": "^4.6.3"
   },
   "devDependencies": {
-    "@auto-it/conventional-commits": "^10.46.0",
-    "@auto-it/first-time-contributor": "^10.46.0",
-    "@auto-it/npm": "^10.46.0",
+    "@auto-it/conventional-commits": "^11.0.5",
+    "@auto-it/first-time-contributor": "^11.0.5",
+    "@auto-it/npm": "^11.0.5",
     "@commitlint/cli": "^17.6.5",
     "@commitlint/config-conventional": "^17.6.5",
     "@tylertech-eslint/eslint-plugin": "^1.0.12",
@@ -81,7 +81,7 @@
     "@types/tmp": "0.2.3",
     "@types/webpack": "^5.28.1",
     "@types/webpack-merge": "^4.1.5",
-    "auto": "^10.46.0",
+    "auto": "^11.0.5",
     "commitlint": "^17.6.5",
     "eslint-plugin-import": "^2.27.5",
     "husky": "^8.0.3",

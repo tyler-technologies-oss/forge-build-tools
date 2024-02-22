@@ -8,6 +8,8 @@ on:
       - 'gulpfile.ts'
       - 'tsconfig.json'
       - 'src/**/*'
+      - 'package.json'
+      - 'package-lock.json'
 
 jobs:
   build:
