@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
-    "module": "ESNext",
+    "target": "es2020",
+    "module": "esnext",
     "moduleResolution": "node",
-    "lib": ["dom", "ES2020"],
+    "lib": ["dom", "es2020"],
     "outDir": "dist/esm",
     "noImplicitAny": true,
     "allowJs": true,
