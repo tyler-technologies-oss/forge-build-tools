@@ -6,12 +6,12 @@
   "license": "Apache-2.0",
   "repository": "tyler-technologies-oss/forge-build-tools",
   "type": "module",
-  "main": "./dist/esm/index.js",
-  "module": "./dist/esm/index.js",
-  "typings": "./dist/typings/index.d.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "typings": "./dist/index.d.ts",
   "exports": {
     "package": "./package.json",
-    "import": "./dist/esm/index.js"
+    "import": "./dist/index.js"
   },
   "files": [
     "dist"
@@ -20,11 +20,10 @@
     "prepare": "husky install",
     "build": "npm run lint && rimraf ./dist && tsc",
     "lint": "eslint ./src",
-    "changelog": "auto changelog",
     "release": "auto shipit"
   },
   "engines": {
-    "node": ">=16"
+    "node": ">=20"
   },
   "keywords": [
     "build",
@@ -34,57 +33,57 @@
     "tyler"
   ],
   "dependencies": {
-    "autoprefixer": "10.4.14",
-    "camelcase": "^7.0.1",
+    "autoprefixer": "10.4.19",
+    "camelcase": "^8.0.0",
     "canonical-path": "^1.0.0",
-    "chalk": "^5.2.0",
-    "clean-css": "^5.3.2",
-    "del": "^7.0.0",
-    "eslint": "^8.42.0",
-    "fs-extra": "^11.1.1",
-    "glob": "^10.2.7",
+    "chalk": "^5.3.0",
+    "clean-css": "^5.3.3",
+    "del": "^7.1.0",
+    "eslint": "^8.57.0",
+    "fs-extra": "^11.2.0",
+    "glob": "^10.3.12",
     "html-minifier": "^4.0.0",
     "lodash.template": "^4.5.0",
     "merge2": "^1.4.1",
-    "ora": "^6.3.1",
-    "postcss": "^8.4.24",
-    "rimraf": "^5.0.1",
-    "rollup": "^3.25.1",
-    "sass": "^1.63.4",
+    "ora": "^8.0.1",
+    "postcss": "^8.4.38",
+    "rimraf": "^5.0.5",
+    "rollup": "^4.17.2",
+    "sass": "^1.75.0",
     "slash": "^5.1.0",
-    "stylelint": "^15.7.0",
-    "tmp": "^0.2.1",
-    "tslib": "^2.5.3",
+    "stylelint": "^16.4.0",
+    "tmp": "^0.2.3",
+    "tslib": "^2.6.2",
     "util": "^0.12.5",
-    "webpack": "^5.87.0",
-    "webpack-merge": "^5.9.0"
+    "webpack": "^5.91.0",
+    "webpack-merge": "^5.10.0"
   },
   "peerDependencies": {
-    "typescript": "^4.6.3"
+    "typescript": "^5.0.0"
   },
   "devDependencies": {
-    "@auto-it/conventional-commits": "^11.0.5",
-    "@auto-it/first-time-contributor": "^11.0.5",
-    "@auto-it/npm": "^11.0.5",
-    "@commitlint/cli": "^17.6.5",
-    "@commitlint/config-conventional": "^17.6.5",
+    "@auto-it/conventional-commits": "^11.1.6",
+    "@auto-it/first-time-contributor": "^11.1.6",
+    "@auto-it/npm": "^11.1.6",
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
     "@tylertech-eslint/eslint-plugin": "^1.0.12",
-    "@types/clean-css": "^4.2.6",
-    "@types/fs-extra": "^11.0.1",
-    "@types/html-minifier": "^4.0.2",
-    "@types/lodash.template": "^4.5.1",
-    "@types/merge2": "^1.4.1",
-    "@types/node": "^20.3.1",
+    "@types/clean-css": "^4.2.11",
+    "@types/fs-extra": "^11.0.4",
+    "@types/html-minifier": "^4.0.5",
+    "@types/lodash.template": "^4.5.3",
+    "@types/merge2": "^1.4.4",
+    "@types/node": "^20.12.7",
     "@types/rimraf": "^3.0.2",
-    "@types/run-sequence": "0.0.30",
+    "@types/run-sequence": "0.0.34",
     "@types/stylelint": "^13.13.3",
-    "@types/tmp": "0.2.3",
-    "@types/webpack": "^5.28.1",
+    "@types/tmp": "0.2.6",
+    "@types/webpack": "^5.28.5",
     "@types/webpack-merge": "^4.1.5",
-    "auto": "^11.0.5",
-    "commitlint": "^17.6.5",
-    "eslint-plugin-import": "^2.27.5",
-    "husky": "^8.0.3",
-    "typescript": "~4.9.2"
+    "auto": "^11.1.6",
+    "commitlint": "^19.3.0",
+    "eslint-plugin-import": "^2.29.1",
+    "husky": "^9.0.11",
+    "typescript": "~5.4.5"
   }
 }
