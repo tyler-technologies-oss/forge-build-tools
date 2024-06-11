@@ -1,3 +1,27 @@
+# v3.0.0 (Tue Jun 11 2024)
+
+#### 💥 Breaking Change
+
+- feat: initial 3.0 GA release [#6](https://github.com/tyler-technologies-oss/forge-build-tools/pull/6) ([@DRiFTy17](https://github.com/DRiFTy17))
+
+#### 🚀 Enhancement
+
+- feat: release ([@DRiFTy17](https://github.com/DRiFTy17))
+
+#### 🐛 Bug Fix
+
+- fix: upgrade Auto [#4](https://github.com/tyler-technologies-oss/forge-build-tools/pull/4) ([@DRiFTy17](https://github.com/DRiFTy17))
+
+#### ⚠️ Pushed to `main`
+
+- chore: allow for manually dispatching release workflow ([@DRiFTy17](https://github.com/DRiFTy17))
+
+#### Authors: 1
+
+- Kieran Nichols ([@DRiFTy17](https://github.com/DRiFTy17))
+
+---
+
 # v2.1.0 (Tue Sep 05 2023)
 
 #### 🚀 Enhancement
