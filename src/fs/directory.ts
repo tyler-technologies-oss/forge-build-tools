@@ -1,8 +1,7 @@
 import { readdirSync, statSync, existsSync } from 'fs';
 import { extname } from 'path';
-import del from 'del';
-
-const cpath = require('canonical-path');
+import { deleteAsync } from 'del';
+import cpath from 'canonical-path';
 
 /**
  * Gets a list of directory names in `directoryPath` that contain all files in `files`.
@@ -25,12 +24,12 @@ export function getDirectoriesContainingFiles(directoryPath: string, files: stri
 
 /** Removes directories in the specified paths */
 export function cleanDirectories(paths: string | string[]): Promise<string[]> {
-  return del(paths);
+  return deleteAsync(paths);
 }
 
 /** Removes files in the specified paths */
 export function cleanFiles(paths: string | string[]): Promise<string[]> {
-  return del(paths);
+  return deleteAsync(paths);
 }
 
 /** Finds all directory names containing a file with the provided extension. */

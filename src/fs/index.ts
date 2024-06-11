@@ -1,3 +1,3 @@
-export * from './directory';
-export * from './fs';
-export * from './modify';
+export * from './directory.js';
+export * from './fs.js';
+export * from './modify.js';

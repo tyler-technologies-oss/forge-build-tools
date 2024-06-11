@@ -1,9 +1,7 @@
 import { ModuleFormat, GlobalsOption, Plugin, OutputOptions, rollup, RollupOptions } from 'rollup';
-import { isAbsolute } from 'canonical-path';
+import cpath from 'canonical-path';
 
-const rollupUglify = require('rollup-plugin-uglify').uglify;
-const uglifyEs = require('uglify-es').minify;
-const uglifyJs = require('uglify-js').minify;
+const { isAbsolute } = cpath;
 
 export interface IRollupBundleConfig {
   input: string;
@@ -11,7 +9,6 @@ export interface IRollupBundleConfig {
   format: ModuleFormat;
   file: string;
   version: string;
-  minify: boolean;
   globals: GlobalsOption;
   banner: string;
   plugins: Plugin[];
@@ -40,10 +37,6 @@ export function createRollupBundle(config: IRollupBundleConfig): Promise<any> {
     input: config.input,
     plugins: config.plugins || []
   };
-
-  if (config.minify) {
-    (bundleOptions.plugins as Plugin[]).push(rollupUglify({}, config.format === 'es' ? uglifyEs : uglifyJs));
-  }
 
   const writeOptions: OutputOptions = {
     name: config.name,

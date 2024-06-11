@@ -2,11 +2,10 @@ import { renderSync as dartSassRenderSync } from 'sass';
 import autoprefixer from 'autoprefixer';
 import postcss, { ProcessOptions } from 'postcss';
 import CleanCSS from 'clean-css';
+import cpath from 'canonical-path';
 
-const cpath = require('canonical-path');
-
-import { globFilesAsync, writeFileAsync, mkdirp } from '../fs';
-import { isGlob, logWarn } from '../utils';
+import { globFilesAsync, writeFileAsync, mkdirp } from '../fs/index.js';
+import { isGlob, logWarn } from '../utils/index.js';
 
 /**
  * Compiles .scss files to .css files within a `rootDir` and outputs them to the `outputDir`.

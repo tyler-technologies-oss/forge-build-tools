@@ -1,7 +1,7 @@
-import * as ts from 'typescript';
+import ts from 'typescript';
 
-import { isGlob, log, logError, logInfo, logWarn } from '../utils';
-import { readJsonFile, globFilesAsync } from '../fs';
+import { isGlob, log, logError, logInfo, logWarn } from '../utils/index.js';
+import { readJsonFile, globFilesAsync } from '../fs/index.js';
 
 export interface ITypeScriptCompilerOptions extends ts.CompilerOptions {}
 
@@ -147,6 +147,9 @@ export function normalizeCompilerOptions(options: ts.CompilerOptions): ts.Compil
         break;
       case 'ES2021':
         options.target = ts.ScriptTarget.ES2021;
+        break;
+      case 'ES2022':
+        options.target = ts.ScriptTarget.ES2022;
         break;
       case 'ESNEXT':
         options.target = ts.ScriptTarget.ESNext;

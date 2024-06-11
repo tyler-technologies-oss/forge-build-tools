@@ -1,6 +1,6 @@
 import { parse, join, dirname } from 'path';
 
-import { existsSync } from '../fs';
+import { existsSync } from '../fs.js';
 
 /**
  * Finds a directory/file above the provided `from` directory.

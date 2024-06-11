@@ -1,14 +1,12 @@
 import * as fs from 'fs';
 import * as util from 'util';
-import rimraf from 'rimraf';
+import { rimrafSync } from 'rimraf';
 import * as tmp from 'tmp';
+import { glob, GlobOptionsWithFileTypesUnset, globSync } from 'glob';
+import fsExtra from 'fs-extra';
+import cpath from 'canonical-path';
 
-import { isGlob, logError } from '../utils';
-
-const winattr = require('winattr');
-const fsExtra = require('fs-extra');
-const glob = require('glob');
-const cpath = require('canonical-path');
+import { isGlob, logError } from '../utils/index.js';
 
 export const existsSync = (path: string): boolean => fs.existsSync(path);
 
@@ -28,15 +26,17 @@ export const removeSync = fsExtra.removeSync;
 export const ensureDir = util.promisify(fsExtra.ensureDir);
 export const ensureDirSync = fsExtra.ensureDirSync;
 export const outputFileAsync = fsExtra.outputFile;
-export const setFileAttrSync = winattr.setSync;
-export const globFiles: string[] = glob.sync;
-export const globFilesAsync = util.promisify(glob);
+export const globFiles = globSync;
 export const emptyDir = fsExtra.emptyDirSync;
 export const emptyDirAsync = fsExtra.emptyDir;
-export const deleteDir = util.promisify(rimraf);
+export const deleteDir = rimrafSync;
 export const rename = util.promisify(fs.rename);
 export const deleteFile = util.promisify(fs.unlink);
 export const moveAsync = util.promisify(fsExtra.move);
+
+export function globFilesAsync(pattern: string | string[], options?: GlobOptionsWithFileTypesUnset | undefined): Promise<string[]> {
+  return glob(pattern, options);
+}
 
 /**
  * Deletes the list of files.
@@ -95,9 +95,9 @@ export async function moveDirectories(dirs: string[], outputDir: string): Promis
  * @param {string} rootDir The common root directory in which to build the structure in the output directory.
  * @param {string | string[]} outputDirs The output directory path.
  */
-export async function copyFilesAsync(files: string | string[], rootDir: string | null, outputDirs: string | string[]): Promise<void> {
+export async function copyFilesAsync(files: string | string[], rootDir: string | null, outputDirs: string | string[], ignoredFiles?: string | string[]): Promise<void> {
   if (typeof files === 'string') {
-    files = isGlob(files) ? await globFilesAsync(files, {}) as string[] : [files];
+    files = isGlob(files) ? await globFilesAsync(files, { ignore: ignoredFiles }) as string[] : [files];
   }
 
   if (typeof outputDirs === 'string') {
@@ -122,7 +122,7 @@ export async function copyFilesAsync(files: string | string[], rootDir: string |
     for (const outputDir of outputDirs) {
       const relativePath = rootDir ? absoluteFilePath.replace(rootDir, '').replace(/^\//, '') : cpath.basename(absoluteFilePath);
       const outputFilePath = cpath.join(outputDir, relativePath);
-      promises.push(copy(file, outputFilePath));
+      promises.push(copyAsync(file, outputFilePath));
     }
 
     await Promise.all(promises);
