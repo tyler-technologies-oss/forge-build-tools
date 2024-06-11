@@ -9,7 +9,7 @@ This library is primarily used to build the Forge Web Component libraries within
 ## Usage
 
 ```shell
-$ npm install --save-dev @tylertech/forge-build-tools
+$ npm install --D @tylertech/forge-build-tools
 ```
 
 ## Development
