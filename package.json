@@ -17,7 +17,7 @@
     "dist"
   ],
   "scripts": {
-    "prepare": "husky install",
+    "prepare": "husky",
     "build": "npm run lint && rimraf ./dist && tsc",
     "lint": "eslint ./src",
     "release": "auto shipit"
