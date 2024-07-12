@@ -1,3 +1,19 @@
+# v3.0.1 (Fri Jul 12 2024)
+
+#### 🐛 Bug Fix
+
+- fix(sass): ensure file paths are normalized to support both *nix and windows [#7](https://github.com/tyler-technologies-oss/forge-build-tools/pull/7) ([@DRiFTy17](https://github.com/DRiFTy17))
+
+#### ⚠️ Pushed to `main`
+
+- chore: husky update ([@DRiFTy17](https://github.com/DRiFTy17))
+
+#### Authors: 1
+
+- Kieran Nichols ([@DRiFTy17](https://github.com/DRiFTy17))
+
+---
+
 # v3.0.0 (Tue Jun 11 2024)
 
 #### 💥 Breaking Change
