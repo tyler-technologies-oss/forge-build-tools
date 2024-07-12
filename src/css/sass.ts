@@ -27,11 +27,11 @@ export async function compileSass(files: string[] | string, rootDir: string, out
     includedFiles = includedFiles.concat(result.stats.includedFiles);
     let cssContent = await runPostCss(file, result.css.toString());
     cssContent = minifyCss(cssContent);
-    const relativeFilePath = file.replace(rootDir, '').replace(/^\//, '').replace(/\.scss$/, '.css');
+    const relativeFilePath = cpath.resolve(file).replace(rootDir, '').replace(/^\//, '').replace(/\.scss$/, '.css');
     const outputFilePath = cpath.join(outputDir, relativeFilePath);
     const outputPath = cpath.dirname(outputFilePath);
     mkdirp(outputPath);
-    await writeFileAsync(outputFilePath, cssContent, 'utf8');
+    await writeFileAsync(outputFilePath, cssContent, 'utf-8');
   }
 
   return includedFiles;
