@@ -1,3 +1,15 @@
+# v3.1.0 (Fri Jul 19 2024)
+
+#### 🚀 Enhancement
+
+- feat(sass): use `compile` API and expose sass options [#8](https://github.com/tyler-technologies-oss/forge-build-tools/pull/8) ([@DRiFTy17](https://github.com/DRiFTy17))
+
+#### Authors: 1
+
+- Kieran Nichols ([@DRiFTy17](https://github.com/DRiFTy17))
+
+---
+
 # v3.0.1 (Fri Jul 12 2024)
 
 #### 🐛 Bug Fix
