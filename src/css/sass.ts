@@ -1,4 +1,4 @@
-import { renderSync as dartSassRenderSync } from 'sass';
+import { compile, type Options } from 'sass';
 import autoprefixer from 'autoprefixer';
 import postcss, { ProcessOptions } from 'postcss';
 import CleanCSS from 'clean-css';
@@ -7,13 +7,19 @@ import cpath from 'canonical-path';
 import { globFilesAsync, writeFileAsync, mkdirp } from '../fs/index.js';
 import { isGlob, logWarn } from '../utils/index.js';
 
+export interface SassCompileOptions {
+  minify?: boolean;
+  postCss?: boolean;
+  sassOptions?: Options<'sync'>;
+}
+
 /**
  * Compiles .scss files to .css files within a `rootDir` and outputs them to the `outputDir`.
  * @param {string[] | string} files An array of filenames, or a glob pattern to find files.
  * @param {string} rootDir The common root directory in which the input files live. This is used to build the structure within the output directory.
  * @param {string} outputDir The output directory where the .css files will be written to.
  */
-export async function compileSass(files: string[] | string, rootDir: string, outputDir: string): Promise<string[]> {
+export async function compileSass(files: string[] | string, rootDir: string, outputDir: string, options: SassCompileOptions = { minify: true, postCss: true }): Promise<string[]> {
   if (typeof files === 'string') {
     files = isGlob(files) ? await globFilesAsync(files, {}) as string[] : [files];
   }
@@ -23,13 +29,23 @@ export async function compileSass(files: string[] | string, rootDir: string, out
   let includedFiles: string[] = [];
 
   for (const file of files) {
-    const result = dartSassRenderSync({ file, includePaths: ['node_modules'], sourceMap: false });
-    includedFiles = includedFiles.concat(result.stats.includedFiles);
-    let cssContent = await runPostCss(file, result.css.toString());
-    cssContent = minifyCss(cssContent);
+    const result = compile(file, { loadPaths: ['node_modules'], sourceMap: false, ...options.sassOptions });
+    includedFiles = includedFiles.concat(result.loadedUrls.map(url => cpath.resolve(url.pathname)));
+    
+    let cssContent = result.css;
+
+    if (options.postCss) {
+      cssContent = await runPostCss(file, cssContent);
+    }
+    
+    if (options.minify) {
+      cssContent = minifyCss(cssContent);
+    }
+
     const relativeFilePath = cpath.resolve(file).replace(rootDir, '').replace(/^\//, '').replace(/\.scss$/, '.css');
     const outputFilePath = cpath.join(outputDir, relativeFilePath);
     const outputPath = cpath.dirname(outputFilePath);
+
     mkdirp(outputPath);
     await writeFileAsync(outputFilePath, cssContent, 'utf-8');
   }
