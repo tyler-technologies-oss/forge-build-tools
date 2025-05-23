@@ -1,3 +1,15 @@
+# v3.1.1 (Fri May 23 2025)
+
+#### 🐛 Bug Fix
+
+- chore: update dependencies [#9](https://github.com/tyler-technologies-oss/forge-build-tools/pull/9) ([@DRiFTy17](https://github.com/DRiFTy17))
+
+#### Authors: 1
+
+- Kieran Nichols ([@DRiFTy17](https://github.com/DRiFTy17))
+
+---
+
 # v3.1.0 (Fri Jul 19 2024)
 
 #### 🚀 Enhancement
