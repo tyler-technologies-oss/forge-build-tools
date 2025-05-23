@@ -22,8 +22,5 @@
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true
-  },
-  "files": [
-    "src/index.ts"
-  ]
+  }
 }
