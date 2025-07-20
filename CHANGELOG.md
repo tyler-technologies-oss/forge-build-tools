@@ -1,3 +1,51 @@
+# v3.2.0 (Sat Jul 20 2025)
+
+## 🚨 BREAKING CHANGES
+
+⚠️ **Security Update**: This release contains critical security fixes that require breaking changes.
+
+#### 💥 Breaking Changes
+
+- **html.minifyHtml()**: Function is now async and returns `Promise<string>` instead of `string`
+  - **Before**: `const result = minifyHtml(html, options);`
+  - **After**: `const result = await minifyHtml(html, options);`
+- **Replaced vulnerable html-minifier@4.0.0** with secure html-minifier-terser@7.2.0
+- **Replaced vulnerable lodash.template@4.5.0** with secure custom template implementation
+
+#### 🔒 Security Fixes
+
+- **CRITICAL**: Fixed REDoS vulnerability in html-minifier (GHSA-pfq8-rq6v-vf5m)
+- **CRITICAL**: Fixed command injection vulnerability in lodash.template (GHSA-35jh-r3h4-6jhm)
+- **MODERATE**: Fixed multiple ReDoS vulnerabilities in @octokit dependencies via overrides
+- **LOW**: Fixed brace-expansion ReDoS vulnerability
+
+#### 🛡️ Security Improvements  
+
+- Implemented secure template processing with input validation
+- Added protection against code injection in template processing
+- Updated all vulnerable dependencies to secure versions
+- Zero known vulnerabilities remaining
+
+#### 📋 Migration Guide
+
+If you use the `minifyHtml` function, update your code to handle the async return:
+
+```typescript
+// Before
+import { minifyHtml } from '@tylertech/forge-build-tools';
+const minified = minifyHtml(htmlContent, options);
+
+// After  
+import { minifyHtml } from '@tylertech/forge-build-tools';
+const minified = await minifyHtml(htmlContent, options);
+```
+
+#### Authors: 1
+
+- Security Audit & Remediation Team
+
+---
+
 # v3.1.1 (Fri May 23 2025)
 
 #### 🐛 Bug Fix
