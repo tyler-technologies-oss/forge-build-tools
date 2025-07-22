@@ -1,7 +1,6 @@
 import { isAbsolute } from 'path';
 import { exec } from 'child_process';
 import * as glob from 'glob';
-import template from 'lodash.template';
 import slash from 'slash';
 import cpath from 'canonical-path';
 import ora from 'ora';
@@ -33,13 +32,39 @@ export interface InstallFileDescriptor {
 }
 
 /**
+ * Securely processes template strings by replacing placeholders with values.
+ * Supports only safe variable substitution using <%= variable %> syntax.
+ * @param templateContent The template string content
+ * @param values The values to substitute
+ * @returns The processed template string
+ */
+function processTemplate<T extends FileTemplateData>(templateContent: string, values: T): string {
+  // Replace <%= variable %> placeholders with values from the data object
+  return templateContent.replace(/<%=\s*([^%>]+)\s*%>/g, (_match, expression) => {
+    const trimmedExpr = expression.trim();
+    
+    // Only allow simple property access (no function calls or complex expressions)
+    if (!/^[a-zA-Z_$][a-zA-Z0-9_$.]*$/.test(trimmedExpr)) {
+      throw new Error(`Unsafe template expression: ${trimmedExpr}`);
+    }
+    
+    // Navigate nested properties safely
+    const value = trimmedExpr.split('.').reduce((obj: any, prop: string) => {
+      return obj && typeof obj === 'object' ? obj[prop] : undefined;
+    }, values.data);
+    
+    return value !== undefined ? String(value) : '';
+  });
+}
+
+/**
  * Reads in a file template and returns the resulting file contents.
  * @param {string} filePath The path the file template.
  * @param {Record<string, never>} values The template values.
  */
-export async function templateFile<T extends FileTemplateData>(filePath: string, values: T, templateOptions?: any): Promise<string> {
+export async function templateFile<T extends FileTemplateData>(filePath: string, values: T): Promise<string> {
   const contents = await readFileAsync(filePath, { encoding: 'utf-8' });
-  return template(contents, templateOptions)(values);
+  return processTemplate(contents, values);
 }
 
 /**
@@ -48,7 +73,7 @@ export async function templateFile<T extends FileTemplateData>(filePath: string,
  * @param dest
  * @param templateValues
  */
-export async function installFiles<T extends FileTemplateData>(files: InstallFileDescriptor[], templateData?: T, templateOptions?: any): Promise<void> {
+export async function installFiles<T extends FileTemplateData>(files: InstallFileDescriptor[], templateData?: T): Promise<void> {
   for (const descriptor of files) {
     switch (descriptor.type) {
       case InstallType.Template:
@@ -56,7 +81,7 @@ export async function installFiles<T extends FileTemplateData>(files: InstallFil
           throw new Error('Template data is required.');
         }
 
-        const contents = await templateFile(descriptor.path, templateData, templateOptions);
+        const contents = await templateFile(descriptor.path, templateData);
         await outputFileAsync(descriptor.outputPath, contents, 'utf-8');
         break;
       case InstallType.Copy:

@@ -1,16 +1,16 @@
-import htmlMinifier from 'html-minifier';
+import { minify } from 'html-minifier-terser';
 
 /**
  * Minifies HTML content.
  * @param html The HTML to minify.
- * @param options The options to pass to `html-minifier`.
+ * @param options The options to pass to `html-minifier-terser`.
  */
-export function minifyHtml(html: string, options?: any): string {
+export async function minifyHtml(html: string, options?: any): Promise<string> {
   const defaultOptions = {
     preserveLineBreaks: false,
     collapseWhitespace: true,
     removeComments: true
   };
   options = options ? Object.assign(defaultOptions, options) : defaultOptions;
-  return htmlMinifier.minify(html, options);
+  return await minify(html, options);
 }
