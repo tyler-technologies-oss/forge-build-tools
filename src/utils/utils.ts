@@ -62,7 +62,7 @@ function processTemplate<T extends FileTemplateData>(templateContent: string, va
  * @param {string} filePath The path the file template.
  * @param {Record<string, never>} values The template values.
  */
-export async function templateFile<T extends FileTemplateData>(filePath: string, values: T, _templateOptions?: any): Promise<string> {
+export async function templateFile<T extends FileTemplateData>(filePath: string, values: T): Promise<string> {
   const contents = await readFileAsync(filePath, { encoding: 'utf-8' });
   return processTemplate(contents, values);
 }
@@ -73,7 +73,7 @@ export async function templateFile<T extends FileTemplateData>(filePath: string,
  * @param dest
  * @param templateValues
  */
-export async function installFiles<T extends FileTemplateData>(files: InstallFileDescriptor[], templateData?: T, templateOptions?: any): Promise<void> {
+export async function installFiles<T extends FileTemplateData>(files: InstallFileDescriptor[], templateData?: T): Promise<void> {
   for (const descriptor of files) {
     switch (descriptor.type) {
       case InstallType.Template:
@@ -81,7 +81,7 @@ export async function installFiles<T extends FileTemplateData>(files: InstallFil
           throw new Error('Template data is required.');
         }
 
-        const contents = await templateFile(descriptor.path, templateData, templateOptions);
+        const contents = await templateFile(descriptor.path, templateData);
         await outputFileAsync(descriptor.outputPath, contents, 'utf-8');
         break;
       case InstallType.Copy:
